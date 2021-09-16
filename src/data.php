@@ -45,6 +45,8 @@ function handle_do_block( array $block, $post_id = 0 ) {
 		return false;
 	}
 
+	$block = apply_filters( 'wp_rest_blocks_pre_handle_block', $block, $post_id );
+
 	$block_object = new WP_Block( $block );
 	$attr         = $block['attrs'];
 	if ( $block_object && $block_object->block_type ) {
@@ -79,6 +81,8 @@ function handle_do_block( array $block, $post_id = 0 ) {
 			$block['innerBlocks'][] = handle_do_block( $_block, $post_id );
 		}
 	}
+
+	$block = apply_filters( 'wp_rest_blocks_post_handle_block', $block, $post_id );
 
 	return $block;
 }
