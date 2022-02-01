@@ -82,9 +82,7 @@ function handle_do_block( array $block, $post_id = 0 ) {
 		}
 	}
 
-	$block = apply_filters( 'wp_rest_blocks_post_handle_block', $block, $post_id );
-
-	return $block;
+	return apply_filters( 'wp_rest_blocks_post_handle_block', $block, $post_id );
 }
 
 /**
